@@ -6,7 +6,7 @@ RailBirds::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'cash_games#index'
 
-  resources :cashgames
+  resources :cash_games
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
