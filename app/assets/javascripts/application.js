@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
+//= require icheck.min
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
-
-$(function(){ $(document).foundation(); });
