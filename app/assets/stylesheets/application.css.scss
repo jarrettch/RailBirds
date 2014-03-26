@@ -13,4 +13,12 @@
  *= require_tree .
  */
 
+.bootstrap-datetimepicker-widget, a.btn {
+  color: lime;
+  background-color: red;
+}
+
+
+
 @import "bootstrap";
+@import "bootstrap-datetimepicker"

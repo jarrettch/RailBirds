@@ -1,8 +1,22 @@
-Cash Game Index
+<h4>Cash Game Results</h4>
 <br />
+<table class="table table-hover">
+<tr>
+  <th>Date</th>
+  <th>Location</th>
+  <th>Game</th>
+  <th>Buyin</th>
+  <th>Cash Out</th>
+  <th>Notes</th>
+</tr>
 <% @cash_games.each do |game| %>
-  <%= game.location %>
+<tr>
+  <td><%= game.end_session %></td>
+  <td><%= game.location %></td>
+  <td><%= game.game %></td>
+  <td>$<%= game.buyin_and_rebuys %>0</td>
+  <td>$<%= game.cash_out %>0</td>
+  <td><%= game.notes %></td>
+</tr>
 <% end %>
-
-
-<button type="button" class="btn btn-info">Info</button>
+</table>
