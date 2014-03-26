@@ -1,13 +1,31 @@
 <h1>New Cash Game</h1>
 
-<%= form_for @cash_game do |game| %>
-  <p>
-    <%= game.label :location %><br />
-    <%= game.text_field :location %>
-  </p>
+<%= form_for @cash_game, html: {class: "form-horizontal", role: "form"} do |game| %>
+  <div class="form-group">
+    <%= game.label :start_session, :class => "col-sm-2" %>
+    <%= game.datetime_field :start_session, :class => "col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= game.label :end_session, :class => "col-sm-2" %>
+    <%= game.datetime_field :end_session, :class => "col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= game.label :location, :class => "col-sm-2" %>
+    <%= game.text_field :location, :class => "col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= game.label :game, :class => "col-sm-2" %>
+    <%= game.text_field :game, :class => "col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= game.label :buyin_and_rebuys, :class => "col-sm-2" %>
+    <%= game.text_field :buyin_and_rebuys, :class => "col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= game.label :notes, :class => "col-sm-2" %>
+    <%= game.text_area :buyin_and_rebuys, :class => "col-sm-4" %>
+  </div>
 
-  <p>
-    <%= game.submit %>
-  </p>
+    <%= game.submit 'submit', :class => "btn btn-default" %>
 <% end %>
 <%= link_to 'Back', cash_games_path %>
