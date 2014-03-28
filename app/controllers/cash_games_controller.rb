@@ -30,7 +30,7 @@ class CashGamesController < ApplicationController
   end
 
   def update
-    @cash_game = CashGame.find(params[:id])
+    @cash_game = CashGame.find_by(params[:id])
     @cash_game.update_attributes!(cash_game_params)
     redirect_to cash_game_path
   end
