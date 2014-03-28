@@ -5,9 +5,17 @@ class CashGamesController < ApplicationController
     @cash_game = CashGame.find_by(params[:id])
   end
 
+  def show
+    @cash_game = CashGame.find(params[:id])
+  end
+
   def new
     @user = User.find_by(params[:id])
     @cash_game = CashGame.new
+  end
+
+  def edit
+    @cash_game = CashGame.find(params[:id])
   end
 
   def create
@@ -17,13 +25,8 @@ class CashGamesController < ApplicationController
       flash[:success] = "Session saved!"
       redirect_to cash_games_path
     else
-      flash[:alert] = "An error occured..."
       render :action => :new
     end
-  end
-
-  def show
-
   end
 
   def update
@@ -33,6 +36,9 @@ class CashGamesController < ApplicationController
   end
 
   def destroy
+    @cash_game = CashGame.find(params[:id])
+    @cash_game.destroy
+    redirect_to cash_games_path
   end
 
   private

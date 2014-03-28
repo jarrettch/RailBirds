@@ -17,6 +17,7 @@
   <td>$<%= game.buyin_and_rebuys %>0</td>
   <td>$<%= game.cash_out %>0</td>
   <td><%= game.notes %></td>
+  <td><%= button_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure you want to delete this session?' } %></td>
 </tr>
 <% end %>
 </table>
