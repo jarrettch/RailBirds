@@ -13,18 +13,26 @@ class CashGamesController < ApplicationController
   def create
     @user = User.find_by(params[:id])
     @cash_game = @user.cash_games.new(cash_game_params)
-    @cash_game.save
-    redirect_to :back
+    if @cash_game.save
+      flash[:success] = "Session saved!"
+      redirect_to cash_games_path
+    else
+      flash[:alert] = "An error occured..."
+      render :action => :new
+    end
   end
 
   def show
 
   end
 
-  def edit
+  def update
+    @cash_game = CashGame.find(params[:id])
+    @cash_game.update_attributes!(cash_game_params)
+    redirect_to cash_game_path
   end
 
-  def delete
+  def destroy
   end
 
   private
