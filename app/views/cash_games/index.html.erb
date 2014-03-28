@@ -8,6 +8,8 @@
   <th>Buyin</th>
   <th>Cash Out</th>
   <th>Notes</th>
+  <th></th>
+  <th></th>
 </tr>
 <% @cash_games.each do |game| %>
 <tr>
@@ -17,6 +19,7 @@
   <td>$<%= game.buyin_and_rebuys %>0</td>
   <td>$<%= game.cash_out %>0</td>
   <td><%= game.notes %></td>
+  <td><%= button_to 'Update', game, method: :edit %></td>
   <td><%= button_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure you want to delete this session?' } %></td>
 </tr>
 <% end %>
