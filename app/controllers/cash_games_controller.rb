@@ -1,7 +1,8 @@
 class CashGamesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @cash_games = CashGame.all
+    @cash_games = current_user.cash_games
     @cash_game = CashGame.find_by(params[:id])
   end
 
