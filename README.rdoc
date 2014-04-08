@@ -6,4 +6,5 @@ This is a work in progress. Many features are planned, including tournament supp
 
 Built using Ruby on Rails, Postgresql and a little jQuery.
 
-Check out [RailBirds on Heroku](https://railbirds.herokuapp.com).
+Check out [RailBirds on Heroku](https://railbirds.herokuapp.com)
+.
