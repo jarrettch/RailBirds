@@ -19,7 +19,7 @@
   <td><%= game.game %></td>
   <td>$<%= game.buyin_and_rebuys %>0</td>
   <td>$<%= game.cash_out %>0</td>
-  <td>$<%= game.buyin_and_rebuys - game.cash_out %>0</td>
+  <td>$<%= game.cash_out - game.buyin_and_rebuys %>0</td>
   <td><%= game.notes %></td>
   <td><%= link_to 'Edit', edit_cash_game_path(game) %></td>
   <td><%= link_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure you want to delete this session?' } %></td>
