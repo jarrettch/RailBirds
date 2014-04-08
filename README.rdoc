@@ -5,3 +5,5 @@ Track your poker sessions when you visit a live casino.
 This is a work in progress. Many features are planned, including tournament support, statistical analysis, and interactive graphs using d3js.
 
 Built using Ruby on Rails, Postgresql and a little jQuery.
+
+Check out [RailBirds on Heroku](https://railbirds.herokuapp.com).
