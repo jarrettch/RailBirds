@@ -18,7 +18,7 @@ class CashGamesController < ApplicationController
   def edit
     @cash_game = current_user.cash_games.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to(root_url, :notice => 'Record not found')
+      redirect_to(cash_games_path, :notice => 'Record not found')
   end
 
   def create
