@@ -16,11 +16,13 @@ class CashGamesController < ApplicationController
   end
 
   def edit
-    @cash_game = CashGame.find(params[:id])
+    @cash_game = current_user.cash_games.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to(root_url, :notice => 'Record not found')
   end
 
   def create
-    @user = User.find_by(params[:id])
+    @user = current_user
     @cash_game = @user.cash_games.new(cash_game_params)
     if @cash_game.save
       flash[:success] = "Session saved!"
