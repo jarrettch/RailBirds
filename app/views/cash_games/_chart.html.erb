@@ -77,19 +77,19 @@ function draw() {
 
   var line = d3.svg.line()
     // assign the X function to plot our line as we wish
-    .x(function(d,i) { 
+    .x(function(d,i) {
       // verbose logging to show what's actually being done
       //console.log('Plotting X value for date: ' + d.date + ' using index: ' + i + ' to be at: ' + x(d.date) + ' using our xScale.');
       // return the X coordinate where we want to plot this datapoint
-      //return x(i); 
-      return x(d.date); 
+      //return x(i);
+      return x(d.date);
     })
-    .y(function(d) { 
+    .y(function(d) {
       // verbose logging to show what's actually being done
       //console.log('Plotting Y value for data value: ' + d.value + ' to be at: ' + y(d.value) + " using our yScale.");
       // return the Y coordinate where we want to plot this datapoint
-      //return y(d); 
-      return y(d.value); 
+      //return y(d);
+      return y(d.value);
     })
     .interpolate("linear");
 
@@ -106,14 +106,14 @@ function draw() {
 
   var garea = d3.svg.area()
     .interpolate("linear")
-    .x(function(d) { 
+    .x(function(d) {
       // verbose logging to show what's actually being done
-      return x(d.date); 
+      return x(d.date);
     })
               .y0(h - margin * 2)
-    .y1(function(d) { 
+    .y1(function(d) {
       // verbose logging to show what's actually being done
-      return y(d.value); 
+      return y(d.value);
     });
 
   dataLines
@@ -195,28 +195,36 @@ function draw() {
         .style("opacity", 1e-6)
         .remove();
 
-      $('svg circle').tipsy({ 
-        gravity: 'w', 
-        html: true, 
+      $('svg circle').tipsy({
+        gravity: 'w',
+        html: true,
         title: function() {
           var d = this.__data__;
     var pDate = d.date;
-          return 'Date: ' + pDate.getDate() + " " + monthNames[pDate.getMonth()] + " " + pDate.getFullYear() + '<br>Value: ' + d.value; 
+          return 'Date: ' + pDate.getDate() + " " + monthNames[pDate.getMonth()] + " " + pDate.getFullYear() + '<br>Value: ' + d.value;
         }
       });
 }
 
 function generateData() {
-  var data = [];
-  var games = <%= @cash_games.to_json %>;
+  var games = [];
+  var data = $.getJSON("/cash_games.json", function(data) {
+    games = data.cash_games;
+    // console.log(data.cash_games);
+    // console.log(games);
+    // console.log(games.first.date);
+    console.log(JSON.stringify(data.cash_games));
+    console.log(games);
 
-  for ( i = 0; i < games.length; i++) {
-    var date = new Date("<%= @cash_game.end_session.strftime('%B %d, %Y %H:%M:%S') %>");
-    date.setDate(date.getDate() - i);
-    date.setHours(0, 0, 0, 0);
-    data.push({'Cash Out' : '<%= @cash_game.cash_out %>', 'date' : date});
-  }
-  return data;
+    for ( i = 0; i < games.length; i++) {
+      var date = new Date(games.end_session.strftime('%B %d, %Y %H:%M:%S'));
+      date.setDate(date.getDate() - i);
+      date.setHours(0, 0, 0, 0);
+      data.push({'Profit' : 'games.profit', 'date' : date});
+    }
+  });
+  // return data;
+  return games;
 }
 
 d3.select('#button').on('click', draw);
@@ -271,18 +279,18 @@ line {
 
   /* Rounded corners */
   .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
-  
+
   /* Uncomment for shadow */
   /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
-  
+
   .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
-  
+
   /* Rules to colour arrows */
   .tipsy-arrow-n { border-bottom-color: #bfbfbf; }
   .tipsy-arrow-s { border-top-color: #bfbfbf; }
   .tipsy-arrow-e { border-left-color: #bfbfbf; }
   .tipsy-arrow-w { border-right-color: #bfbfbf; }
-  
+
   .tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
     .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
     .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
